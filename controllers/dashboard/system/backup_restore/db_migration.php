@@ -1,5 +1,5 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-class DashboardSystemDbmigrationController extends Controller {
+class DashboardSystemBackupRestoreDbMigrationController extends Controller {
 	
 	public function view() {
 		$h = Loader::helper("db_fix", "db_case_sensitivity");

@@ -2,8 +2,10 @@
 $ih = Loader::helper("concrete/interface");
 ?>
 
-<h1><span><?php echo t("Database Migration Tool") ?></h1>
-<div class="ccm-dashboard-inner">
+<div class="ccm-pane">
+<?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Database Migration Tool'), false, false, false)?>
+<div class="ccm-pane-body">
+<h3><?php echo t("Database Migration Tool") ?></h3>
 	<div style="padding-bottom:20px;">
 		<p><?php echo t("This tool lets you easily convert your case insensitive database table names to case sensitive.") ?></p>
 	</div>
@@ -18,14 +20,14 @@ $ih = Loader::helper("concrete/interface");
 			<p><?php echo t("You can also run the script manually after you've moved the site by downloading the migration script below.") ?></p>
 		</div>
 		<?php endif; ?>
-		<?php echo $ih->button(t("Run Migration"), $this->action("migrate"), "left"); ?>
+		<?php echo $ih->button(t("Run Migration"), $this->action("migrate"), "left", "btn primary"); ?>
 	</div>
 	
 <?php if (sizeof($backupFiles) > 0) : ?>
 	<h2><?php echo t("Migrate Backup Files") ?></h2>
 	<div style="padding-bottom:20px;">
 		<p><?php echo sprintf(t("Currently you have %d backup file(s) available. If you want to migrate these files, just click on the link below."), sizeof($backupFiles)) ?></p>
-		<?php echo $ih->button(t("Migrate Backup Files"), $this->action("migrate_backup"), "left"); ?>
+		<?php echo $ih->button(t("Migrate Backup Files"), $this->action("migrate_backup"), "left", "btn primary"); ?>
 	</div>
 <?php endif; ?>
 	
@@ -49,4 +51,5 @@ $ih = Loader::helper("concrete/interface");
 		?></pre>
 	</div>
 <?php endif; ?>
+</div>
 </div>
