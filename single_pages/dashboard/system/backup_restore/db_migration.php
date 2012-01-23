@@ -52,4 +52,5 @@ $ih = Loader::helper("concrete/interface");
 	</div>
 <?php endif; ?>
 </div>
+<?php Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false); ?>
 </div>
