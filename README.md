@@ -7,7 +7,7 @@ If you want to install the db_case_sensitivity package straight from github, her
 5. Rename the folder to "db_case_sensitivity"
 6. Install the package from concrete5 and you're done
 
-## Where is the tools located at ##
+## Where are the tools located at? ##
 For concrete5.5 and newer: Dashboard => System & Settings => Backup & Restore => Database Migration
 
 For older concrete5 versions: Dashboard => System & Maintenance => Database Migration
