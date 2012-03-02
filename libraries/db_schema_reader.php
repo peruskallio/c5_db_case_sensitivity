@@ -125,17 +125,19 @@ class DbSchemaReader {
 		foreach ($packages as $pkg) {
 			$pkg = Loader::package($pkg->getPackageHandle());
 			
-			$dir = DIR_PACKAGES . '/' . $pkg->getPackageHandle() . '/';
-			if (file_exists($dir . '/' . FILENAME_PACKAGE_DB)) {
-				$this->_parseSchema($dir, FILENAME_BLOCK_DB);
-			}
-			// Integration function for packages for tables that
-			// do not show up in the default schema files
-			if (method_exists($pkg, "getDatabaseSpecialTables")) {
-				$arr = $pkg->getDatabaseSpecialTables();
-				if (is_array($arr)) {
-					foreach ($arr as $tbl) {
-						$this->_parser->addTableName($tbl);
+			if (is_object($pkg)) {
+				$dir = DIR_PACKAGES . '/' . $pkg->getPackageHandle() . '/';
+				if (file_exists($dir . '/' . FILENAME_PACKAGE_DB)) {
+					$this->_parseSchema($dir, FILENAME_BLOCK_DB);
+				}
+				// Integration function for packages for tables that
+				// do not show up in the default schema files
+				if (method_exists($pkg, "getDatabaseSpecialTables")) {
+					$arr = $pkg->getDatabaseSpecialTables();
+					if (is_array($arr)) {
+						foreach ($arr as $tbl) {
+							$this->_parser->addTableName($tbl);
+						}
 					}
 				}
 			}

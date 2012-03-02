@@ -1,6 +1,14 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 class DashboardSystemDbmigrationController extends Controller {
 	
+	public function on_start() {
+		$this->error = Loader::helper('validation/error');
+	}
+	
+	public function on_before_render() {
+		$this->set('error', $this->error);
+	}
+	
 	public function view() {
 		$h = Loader::helper("db_fix", "db_case_sensitivity");
 		$this->set("dbscript", $h->getFixScript());
@@ -55,13 +63,18 @@ class DashboardSystemDbmigrationController extends Controller {
 					$str_restSql = str_replace(strtolower($tbl), $tbl, $str_restSql);
 				}
 				// Write back the SQL file
-				chmod($file,700);
-				$fh->clear($file);
-				$fh->append($file, $encrypt ? $crypt->encrypt($str_restSql) : $str_restSql);
-				chmod($file,000);
+				if (@chmod($file,700)) {
+					$fh->clear($file);
+					$fh->append($file, $encrypt ? $crypt->encrypt($str_restSql) : $str_restSql);
+					chmod($file,000);
+				} else {
+					$this->error->add(t("Cannot write to the following backup file: %s", $file));
+				}
 			}
 			
-			$this->set("message", t("Successfully migrated your backup files!"));
+			if (!$this->error->has()) {
+				$this->set("message", t("Successfully migrated your backup files!"));
+			}
 		}
 		$this->view();
 	}

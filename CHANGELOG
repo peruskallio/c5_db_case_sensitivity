@@ -1,1 +1,2 @@
+1.0.1 - Fixes for un-existing packages in the installed package list and also when permissions are not set correctly for backup files
 1.0 - Initial release

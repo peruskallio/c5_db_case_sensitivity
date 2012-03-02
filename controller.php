@@ -3,7 +3,7 @@ class DbCaseSensitivityPackage extends Package {
 	
 	protected $pkgHandle = 'db_case_sensitivity';
 	protected $appVersionRequired = '5.4.2';
-	protected $pkgVersion = '1.0';
+	protected $pkgVersion = '1.0.1';
 	
 	public function getPackageDescription() {
 		return t('Fixes the database table names to case sensitive.');
