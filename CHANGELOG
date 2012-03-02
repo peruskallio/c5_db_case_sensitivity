@@ -1,2 +1,3 @@
+1.1.1 - Fixes for un-existing packages in the installed package list and also when permissions are not set correctly for backup files
 1.1 - Initial release for 5.5
 1.0 - Initial release
