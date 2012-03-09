@@ -60,7 +60,9 @@ class DashboardSystemDbmigrationController extends Controller {
 				}
 				// Write the table names correctly
 				foreach ($tables as $tbl) {
-					$str_restSql = str_replace(strtolower($tbl), $tbl, $str_restSql);
+					$pattern = "/([ `]{1,1})(".strtolower($tbl).")([`]?)([ ;]{1,1})/";
+					$cb = create_function('$matches','return ' . get_class() . '::replaceTableName($matches, "' . $tbl . '");');
+					$str_restSql = preg_replace_callback($pattern, $cb, $str_restSql);
 				}
 				// Write back the SQL file
 				if (@chmod($file,700)) {
@@ -77,6 +79,14 @@ class DashboardSystemDbmigrationController extends Controller {
 			}
 		}
 		$this->view();
+	}
+
+	/**
+	 * Regular expression callback to replace the table name in
+	 * the backup files.
+	 */
+	public static function replaceTableName($matches, $origTable) {
+		return $matches[1] . $origTable . $matches[3] . $matches[4];
 	}
 	
 	private function _getBackupFiles() {
