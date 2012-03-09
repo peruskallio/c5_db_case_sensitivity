@@ -41,6 +41,7 @@ $ih = Loader::helper("concrete/interface");
 	<h2><?php echo t("Some tables are missing from the migration!") ?></h2>
 	<div style="padding-bottom:20px;">
 		<p><?php echo t("Because concrete5 is open source and has a wide range of third party add-ons, this tool cannot guarantee that all the database tables are included in the migration.") ?></p>
+		<p><?php echo t("These tables might also belong to some uninstalled add-on or add-ons.") ?></p>
 		<p><?php echo t("These tables are missing from this site's database migration:") ?>
 		<pre><?php 
 		$str = "";

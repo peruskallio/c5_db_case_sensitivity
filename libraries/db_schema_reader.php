@@ -9,8 +9,6 @@ class DbSchemaReader {
 	}
 	
 	public function fixDatabaseNames() {
-		$names = $this->getDatabaseTableNames();
-		
 		$sqls = $this->getFixScriptRows();
 		$db = Loader::db();
 		foreach ($sqls as $sql) {
