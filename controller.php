@@ -40,8 +40,7 @@ class DbCaseSensitivityPackage extends Package {
 			"btMultisiteNavigation",
 			"CollectionSearchIndexAttributes",
 			"FileSearchIndexAttributes",
-			"UserSearchIndexAttributes",
-			"SystemAntiSpamLibraries"
+			"UserSearchIndexAttributes"
 		);
 		$tables = array_merge($tables, $this->_getSpecialTablesCoreCommerce());
 		
