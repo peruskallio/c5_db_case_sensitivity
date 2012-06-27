@@ -33,13 +33,11 @@ class DbSchemaReader {
 				$tmpName = $migrateTbl . "_tmp";
 				$sql = "RENAME TABLE " . $migrateTbl . " TO " . $tmpName . ";";
 				array_push($rows, $sql);
-				if ($appendCorrect || ($key2 = array_search($tbl, $currentTables)) !== false) {
-					// First drop the old correctly named table for
-					// the renaming to be possible
-					$sql = "DROP TABLE IF EXISTS " . $tbl . ";";
-					array_push($rows, $sql);
-					unset($currentTables[$key2]);
-				}
+				// First drop the old correctly named table for
+				// the renaming to be possible
+				$sql = "DROP TABLE IF EXISTS " . $tbl . ";";
+				array_push($rows, $sql);
+				unset($currentTables[$key2]);
 				// After that we can change the temp name to the correct
 				// case sensitive name.
 				$sql = "RENAME TABLE " . $tmpName . " TO " . $tbl . ";";
