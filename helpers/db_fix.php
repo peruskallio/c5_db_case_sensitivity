@@ -18,7 +18,7 @@ class DbFixHelper {
 	public function getFixScript() {
 		$script = "";
 		$i = 0;
-		foreach ($this->_reader->getFixScriptRows(false) as $row) {
+		foreach ($this->_reader->getFixScriptRows(true) as $row) {
 			if ($i > 0) {
 				$script .= "\r\n";
 			}
